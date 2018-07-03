@@ -1,0 +1,8 @@
+import secure.api.plugin.auth.Role
+
+model {
+	Iterable<Role> roleList
+}
+
+json tmpl.role(roleList ?: [])
+

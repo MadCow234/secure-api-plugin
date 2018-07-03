@@ -1,0 +1,7 @@
+import secure.api.plugin.auth.Role
+
+model {
+	Role role
+}
+
+json g.render(role, [resolveTemplate: false])

@@ -1,0 +1,45 @@
+grails:
+    plugin:
+        springsecurity:
+            userLookup:
+                userDomainClassName: secure.api.plugin.auth.User
+                authorityJoinClassName: secure.api.plugin.auth.UserRole
+            authority:
+                className: secure.api.plugin.auth.Role
+            rest:
+                token:
+                    storage:
+                        jwt:
+                            secret: Th!sIsAr3aLlYl0nGsUp3rAw3s0m3S3cR37
+            controllerAnnotations.staticRules:
+                - pattern: '/'
+                  access: ['permitAll']
+                - pattern: '/index'
+                  access: ['permitAll']
+                - pattern: '/error'
+                  access: ['permitAll']
+                - pattern: '/assets/**'
+                  access: ['permitAll']
+                - pattern: '/**/js/**'
+                  access: ['permitAll']
+                - pattern: '/**/css/**'
+                  access: ['permitAll']
+                - pattern: '/**/images/**'
+                  access: ['permitAll']
+                - pattern: '/**/favicon.ico'
+                  access: ['permitAll']
+                - pattern: '/api/**'
+                  access: ['permitAll']
+            filterChain.chainMap:
+                - pattern: '/assets/**'
+                  filters: 'none'
+                - pattern: '/**/js/**'
+                  filters: 'none'
+                - pattern: '/**/css/**'
+                  filters: 'none'
+                - pattern: '/**/images/**'
+                  filters: 'none'
+                - pattern: '/**/favicon.ico'
+                  filters: 'none'
+                - pattern: '/api/**'
+                  filters: 'JOINED_FILTERS,-anonymousAuthenticationFilter,-exceptionTranslationFilter,-authenticationProcessingFilter,-securityContextPersistenceFilter,-rememberMeAuthenticationFilter'
